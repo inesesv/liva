@@ -1,111 +1,365 @@
 <!DOCTYPE html>
-<html lang="lv">
+<html lang="lv" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIVA – Sākums</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Latvijas Izglītības vadītāju asociācija (LIVA)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        livaBlue: '#1B5299',
+                        livaDarkBlue: '#092147',
+                        livaGreen: '#8CC63F',
+                        livaGreenHover: '#7ab335',
+                        livaLight: '#F8F9FA'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom gradient fade-out transition for the hero image */
+        .hero-image-container {
+            position: relative;
+            background-image: url('33eb46fc-6abe-4745-84d7-ac65a093a720.webp');
+            background-size: cover;
+            background-position: center;
+        }
+        @media (min-width: 1024px) {
+            .hero-image-container {
+                mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+                -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="bg-livaLight text-gray-800 antialiased flex flex-col min-h-screen">
 
-    <header>
-        <div class="logo-container">
-            <a href="index.html"><img src="logo.png" alt="LIVA Logo"></a>
+    <!-- Augšējā navigācijas josla -->
+    <header class="bg-livaBlue text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logotips (Baltais logotips no logo.png) -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchSection('sakums')">
+                    <img src="logo.png" alt="LIVA Logo" class="h-10 w-auto object-contain">
+                    <div class="hidden sm:block">
+                        <span class="block font-bold text-sm tracking-wide">LIVA</span>
+                        <span class="block text-xs text-blue-200">Latvijas Izglītības vadītāju asociācija</span>
+                    </div>
+                </div>
+
+                <!-- Datoru izvēlne -->
+                <nav class="hidden xl:flex space-x-1 text-sm font-medium">
+                    <button onclick="switchSection('sakums')" class="nav-btn px-3 py-2 rounded hover:bg-livaDarkBlue transition active" data-target="sakums">Sākums</button>
+                    <button onclick="switchSection('par-mums')" class="nav-btn px-3 py-2 rounded hover:bg-livaDarkBlue transition" data-target="par-mums">Par mums</button>
+                    <button onclick="switchSection('valde')" class="nav-btn px-3 py-2 rounded hover:bg-livaDarkBlue transition" data-target="valde">Valde</button>
+                    <button onclick="switchSection('biedri')" class="nav-btn px-3 py-2 rounded hover:bg-livaDarkBlue transition" data-target="biedri">Biedri</button>
+                    <button onclick="switchSection('atbalsta')" class="nav-btn px-3 py-2 rounded hover:bg-livaDarkBlue transition" data-target="atbalsta">Atbalsta</button>
+                    <button onclick="switchSection('likumi')" class="nav-btn px-3 py-2 rounded hover:bg-livaDarkBlue transition" data-target="likumi">Likumi</button>
+                    <button onclick="switchSection('mk-noteikumi')" class="nav-btn px-3 py-2 rounded hover:bg-livaDarkBlue transition" data-target="mk-noteikumi">MK noteikumi</button>
+                    <button onclick="switchSection('saistitie-dokumenti')" class="nav-btn px-3 py-2 rounded hover:bg-livaDarkBlue transition" data-target="saistitie-dokumenti">Saistītie dokumenti</button>
+                </nav>
+
+                <!-- Mobilās izvēlnes poga -->
+                <div class="xl:hidden flex items-center">
+                    <button id="menu-toggle" class="text-white focus:outline-none p-2 rounded hover:bg-livaDarkBlue">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">SĀKUMS</a></li>
-                <li><a href="par-mums.html">PAR MUMS</a></li>
-                <li><a href="valde.html">VALDE</a></li>
-                <li><a href="biedri.html">BIEDRI</a></li>
-                <li><a href="atbalsta.html">ATBALSTA</a></li>
-                <li><a href="likumi.html">LIKUMI</a></li>
-                <li><a href="mk-noteikumi.html">MK NOTEIKUMI</a></li>
-                <li><a href="saistitie-dokumenti.html">SAISTĪTIE DOKUMENTI</a></li>
-            </ul>
-        </nav>
+
+        <!-- Mobilā izvēlne -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-livaDarkBlue border-t border-blue-900 px-4 pt-2 pb-4 space-y-1">
+            <button onclick="switchSection('sakums'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded hover:bg-livaBlue transition">Sākums</button>
+            <button onclick="switchSection('par-mums'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded hover:bg-livaBlue transition">Par mums</button>
+            <button onclick="switchSection('valde'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded hover:bg-livaBlue transition">Valde</button>
+            <button onclick="switchSection('biedri'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded hover:bg-livaBlue transition">Biedri</button>
+            <button onclick="switchSection('atbalsta'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded hover:bg-livaBlue transition">Atbalsta</button>
+            <button onclick="switchSection('likumi'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded hover:bg-livaBlue transition">Likumi</button>
+            <button onclick="switchSection('mk-noteikumi'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded hover:bg-livaBlue transition">MK noteikumi</button>
+            <button onclick="switchSection('saistitie-dokumenti'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded hover:bg-livaBlue transition">Saistītie dokumenti</button>
+        </div>
     </header>
 
-    <main class="main-content">
-        <section class="hero-gradient-section">
-            <div class="hero-image-side"></div>
-            <div class="hero-gradient-side">
-                <h1>LĪDERĪBA UN INOVĀCIJAS LATVIJAS IZGLĪTĪBĀ</h1>
-                <p>Stipri vadītāji. Stipras skolas. Stipra Latvija.</p>
-                <a href="par-mums.html" class="btn-green">PIEVIENOTIES</a>
+    <!-- Galvenais satura konteiners -->
+    <main class="flex-grow">
+
+        <!-- 1. SĀKUMS -->
+        <section id="section-sakums" class="content-section">
+            <!-- Refined Hero Sadaļa ar kreiso attēlu un gradientu uz pelēko fonu labajā pusē -->
+            <div class="bg-gray-100 py-12 lg:py-20 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <!-- Kreisā puse: Attēls ar gradienta pāreju -->
+                        <div class="lg:col-span-7 h-[350px] sm:h-[450px] lg:h-[500px] rounded-2xl shadow-xl hero-image-container"></div>
+                        
+                        <!-- Labā puse: Teksts un CTA pogas (mīkstā pelēkā / gaišā vidē) -->
+                        <div class="lg:col-span-5 space-y-6 text-left">
+                            <span class="bg-livaBlue text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Līderība izglītībā</span>
+                            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-livaDarkBlue leading-tight">
+                                LĪDERĪBA UN INOVĀCIJAS LATVIJAS IZGLĪTĪBĀ
+                            </h1>
+                            <p class="text-gray-600 text-base lg:text-lg">
+                                Latvijas Izglītības vadītāju asociācija vieno un atbalsta Latvijas izglītības iestāžu vadītājus, veicinot profesionālo izaugsmi, pieredzes apmaiņu un saliedētību.
+                            </p>
+                            <div class="pt-2">
+                                <button onclick="switchSection('par-mums')" class="bg-livaGreen hover:bg-livaGreenHover text-livaDarkBlue font-bold px-8 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                                    PIEVIENOTIES
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vērtību un informācijas kartītes -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-blue-50 text-livaBlue rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-chart-line text-livaGreen"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-livaDarkBlue mb-2">Profesionālā izaugsme</h3>
+                        <p class="text-gray-600 text-sm">Semināri, apmācības un mentoringa programmas izglītības iestāžu vadītājiem kompetences celšanai.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-blue-50 text-livaBlue rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-handshake text-livaGreen"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-livaDarkBlue mb-2">Pieredzes apmaiņa</h3>
+                        <p class="text-gray-600 text-sm">Sadarbības tīkli, pieredzes braucieni un veiksmīgu vadības piemēru pārnese starp skolām.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-blue-50 text-livaBlue rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-shield-halved text-livaGreen"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-livaDarkBlue mb-2">Interešu aizstāvība</h3>
+                        <p class="text-gray-600 text-sm">Viedokļu paušana un sadarbība ar ministriju un pašvaldībām izglītības politikas jautājumos.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="intro-section">
-            <p>Latvijas Izglītības vadītāju asociācija (LIVA) ir profesionāla organizācija, kas apvieno izglītības iestāžu vadītājus, pārstāv viņu intereses un stiprina izglītības līderību Latvijā.</p>
-            <div class="pillars-grid">
-                <div class="pillar-card">
-                    <h3>Profesionālā izaugsme</h3>
-                    <p>Mērķtiecīga vadītāju kompetenču pilnveide, semināri un stratēģiskās līderības programmas.</p>
-                </div>
-                <div class="pillar-card">
-                    <h3>Pieredzes apmaiņa</h3>
-                    <p>Droša profesionālā kopiena labās prakses apmaiņai starp dažādu Latvijas novadu izglītības iestādēm.</p>
-                </div>
-                <div class="pillar-card">
-                    <h3>Interešu pārstāvniecība</h3>
-                    <p>Aktīva līdzdalība izglītības politikas veidošanā un normatīvo aktu pilnveides procesos.</p>
+        <!-- 2. PAR MUMS -->
+        <section id="section-par-mums" class="content-section hidden py-16 max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-livaDarkBlue mb-6 border-b-2 border-livaGreen pb-2 inline-block">Par LIVA</h2>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 space-y-6 text-gray-700 leading-relaxed">
+                <p class="text-lg font-medium text-livaBlue">Latvijas Izglītības vadītāju asociācija (LIVA) ir neatkarīga sabiedriska organizācija, kas apvieno vispārējās izglītības iestāžu vadītājus.</p>
+                <p>Asociācijas galvenais mērķis ir sekmēt izglītības iestāžu efektīvu darbību un attīstību, pārstāvēt un aizstāvēt savu biedru profesionālās intereses.</p>
+            </div>
+        </section>
+
+        <!-- 3. VALDE -->
+        <section id="section-valde" class="content-section hidden py-16 max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-livaDarkBlue mb-6 border-b-2 border-livaGreen pb-2 inline-block">LIVA Valde</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 text-center">
+                    <div class="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center text-gray-400 text-3xl">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-livaDarkBlue">Vārds Uzvārds</h3>
+                    <p class="text-sm font-semibold text-livaBlue mb-2">Valdes priekšsēdētājs</p>
                 </div>
             </div>
         </section>
+
+        <!-- 4. BIEDRI -->
+        <section id="section-biedri" class="content-section hidden py-16 max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-livaDarkBlue mb-6 border-b-2 border-livaGreen pb-2 inline-block">Biedri</h2>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                <p class="text-gray-700">LIVA biedru pulkā ir vairāk nekā 300 izglītības iestāžu vadītāji no visiem reģioniem.</p>
+            </div>
+        </section>
+
+        <!-- 5. ATBALSTA -->
+        <section id="section-atbalsta" class="content-section hidden py-16 max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-livaDarkBlue mb-6 border-b-2 border-livaGreen pb-2 inline-block">Atbalsta un Partneri</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-gray-200 flex items-center justify-center font-bold text-gray-400 h-32 shadow-sm">Partneris 1</div>
+            </div>
+        </section>
+
+        <!-- 6. LIKUMI -->
+        <section id="section-likumi" class="content-section hidden py-16 max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-livaDarkBlue mb-6 border-b-2 border-livaGreen pb-2 inline-block">Likumi</h2>
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-livaDarkBlue text-white text-xs uppercase tracking-wider">
+                            <th class="p-4">Nosaukums</th>
+                            <th class="p-4">Pieņemts</th>
+                            <th class="p-4 text-right">Fails</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 text-sm">
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-4 font-medium text-livaDarkBlue">Izglītības likums</td>
+                            <td class="p-4 text-gray-500">29.10.1998.</td>
+                            <td class="p-4 text-right"><a href="#" class="text-livaBlue hover:underline font-bold"><i class="fa-solid fa-file-pdf mr-1"></i> PDF</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 7. MK NOTEIKUMI -->
+        <section id="section-mk-noteikumi" class="content-section hidden py-16 max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-livaDarkBlue mb-6 border-b-2 border-livaGreen pb-2 inline-block">Ministru kabineta noteikumi</h2>
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-livaDarkBlue text-white text-xs uppercase tracking-wider">
+                            <th class="p-4">Nosaukums</th>
+                            <th class="p-4 text-right">Lejupielādēt</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 text-sm">
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-4 font-medium text-livaDarkBlue">MK noteikumi Nr. 591</td>
+                            <td class="p-4 text-right"><a href="#" class="text-livaBlue hover:underline font-bold"><i class="fa-solid fa-file-pdf mr-1"></i> PDF</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 8. SAISTĪTIE DOKUMENTI -->
+        <section id="section-saistitie-dokumenti" class="content-section hidden py-16 max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-livaDarkBlue mb-6 border-b-2 border-livaGreen pb-2 inline-block">Saistītie dokumenti</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                    <h4 class="font-bold text-livaDarkBlue mb-1">LIVA Statūti</h4>
+                    <a href="#" class="text-xs font-semibold text-livaBlue hover:underline"><i class="fa-solid fa-download mr-1"></i> Lejupielādēt PDF</a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <section class="aktualitates-section">
-        <div class="aktualitates-container">
-            <h2>Aktualitātes</h2>
-            <div class="news-grid">
-                <div class="news-card">
+    <!-- Aktualitātes (News) sadaļa pārvietota tieši virs kājenes -->
+    <section class="bg-gray-50 py-16 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-livaDarkBlue">Aktualitātes</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
                     <div>
-                        <h3>Izglītības vadītāju forums 2026</h3>
-                        <p>Aicinām asociācijas biedrus reģistrēties ikgadējam izglītības līderības forumam par skolu autonomiju un attīstību.</p>
+                        <span class="text-xs text-gray-400">18.02.2026</span>
+                        <h3 class="font-bold text-livaDarkBlue mt-1 mb-2">Latvijas izglītības asociācijas tikšanās</h3>
+                        <p class="text-sm text-gray-600 mb-4">Jaunākie grozījumi izglītības likumdošanā un vadītāju pieredze.</p>
                     </div>
-                    <a href="par-mums.html">Lasīt vairāk &rarr;</a>
+                    <a href="#" class="text-xs font-bold text-livaBlue hover:underline">Lasīt vairāk &rarr;</a>
                 </div>
-                <div class="news-card">
+                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
                     <div>
-                        <h3>Priekšlikumi normatīvo aktu pilnveidei</h3>
-                        <p>LIVA valde ir iesniegusi priekšlikumus Izglītības un zinātnes ministrijai par pedagogu darba samaksas modeli.</p>
+                        <span class="text-xs text-gray-400">12.02.2026</span>
+                        <h3 class="font-bold text-livaDarkBlue mt-1 mb-2">Aktuālas izmaiņas</h3>
+                        <p class="text-sm text-gray-600 mb-4">Informācija par valsts pārbaudes darbiem un metodiskajiem materiāliem.</p>
                     </div>
-                    <a href="likumi.html">Lasīt vairāk &rarr;</a>
+                    <a href="#" class="text-xs font-bold text-livaBlue hover:underline">Lasīt vairāk &rarr;</a>
                 </div>
-                <div class="news-card">
+                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
                     <div>
-                        <h3>Pieredzes apmaiņas semināri reģionos</h3>
-                        <p>Uzsākam reģionālo tikšanos ciklu izglītības iestāžu vadītājiem labās prakses pārņemšanai.</p>
+                        <span class="text-xs text-gray-400">05.02.2026</span>
+                        <h3 class="font-bold text-livaDarkBlue mt-1 mb-2">Konferences pieteikšanās</h3>
+                        <p class="text-sm text-gray-600 mb-4">Atvērta reģistrācija ikgadējai skolu direktoru konferencei.</p>
                     </div>
-                    <a href="biedri.html">Lasīt vairāk &rarr;</a>
+                    <a href="#" class="text-xs font-bold text-livaBlue hover:underline">Lasīt vairāk &rarr;</a>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400">28.01.2026</span>
+                        <h3 class="font-bold text-livaDarkBlue mt-1 mb-2">Pieredzes apmaiņas brauciens</h3>
+                        <p class="text-sm text-gray-600 mb-4">Iespaidi un secinājumi no reģionu izglītības iestāžu apmeklējumiem.</p>
+                    </div>
+                    <a href="#" class="text-xs font-bold text-livaBlue hover:underline">Lasīt vairāk &rarr;</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-col">
-                <h4>Latvijas Izglītības vadītāju asociācija</h4>
-                <p>Stipri vadītāji. Stipras skolas. Stipra Latvija.</p>
+    <!-- Kājene (Footer) -->
+    <footer class="bg-livaDarkBlue text-white pt-12 pb-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 border-b border-blue-900 pb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="logo.png" alt="LIVA Logo" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">LIVA</span>
+                    </div>
+                    <p class="text-sm text-blue-200">Latvijas Izglītības vadītāju asociācija – kopā par spēcīgu nākotni.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-livaGreen">Kontakti</h4>
+                    <p class="text-sm text-blue-200 mb-2"><i class="fa-solid fa-location-dot mr-2"></i> Valdemāra iela 1, Rīga, LV-1010</p>
+                    <p class="text-sm text-blue-200 mb-2"><i class="fa-solid fa-envelope mr-2"></i> info@liva-izglitiba.lv</p>
+                    <p class="text-sm text-blue-200"><i class="fa-solid fa-phone mr-2"></i> +371 67000000</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-livaGreen">Sociālie tīkli</h4>
+                    <div class="flex space-x-4 text-xl">
+                        <a href="#" class="hover:text-livaGreen transition"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="hover:text-livaGreen transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="hover:text-livaGreen transition"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="hover:text-livaGreen transition"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="footer-col">
-                <h4>Kontaktinformācija</h4>
-                <p>E-pasts: info@liva.lv<br>Tālrunis: +371 20000000</p>
+            <div class="text-center text-xs text-blue-300">
+                &copy; 2026 Latvijas Izglītības vadītāju asociācija (LIVA). Visas tiesības aizsargātas.
             </div>
-            <div class="footer-col">
-                <h4>Adrese</h4>
-                <p>Aspazijas bulvāris 32, Rīga, LV-1050</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2026 Latvijas Izglītības vadītāju asociācija (LIVA). Visas tiesības aizsargātas.
         </div>
     </footer>
 
+    <!-- JavaScript loģika -->
+    <script>
+        function switchSection(targetId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.classList.add('hidden'));
+
+            const activeSection = document.getElementById('section-' + targetId);
+            if (activeSection) {
+                activeSection.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Aktīvās pogas stils
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                if(btn.getAttribute('data-target') === targetId) {
+                    btn.classList.add('bg-livaDarkBlue');
+                } else {
+                    btn.classList.remove('bg-livaDarkBlue');
+                }
+            });
+        }
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
