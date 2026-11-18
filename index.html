@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIVA - Sākums</title>
+    <title>LIVA – Sākums</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="logo-container">
             <a href="index.html"><img src="logo.png" alt="LIVA Logo"></a>
@@ -27,9 +29,7 @@
         </nav>
     </header>
 
-    <!-- Galvenais saturs -->
-    <div class="main-content">
-        <!-- Hero sadaļa ar attēlu un pelēku pāreju -->
+    <main class="main-content">
         <section class="hero-gradient-section">
             <div class="hero-image-side"></div>
             <div class="hero-gradient-side">
@@ -38,44 +38,72 @@
                 <a href="par-mums.html" class="btn-green">PIEVIENOTIES</a>
             </div>
         </section>
-    </div>
 
-    <!-- Aktualitāšu bloks pirms footer -->
+        <section class="intro-section">
+            <p>Latvijas Izglītības vadītāju asociācija (LIVA) ir profesionāla organizācija, kas apvieno izglītības iestāžu vadītājus, pārstāv viņu intereses un stiprina izglītības līderību Latvijā.</p>
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <h3>Profesionālā izaugsme</h3>
+                    <p>Mērķtiecīga vadītāju kompetenču pilnveide, semināri un stratēģiskās līderības programmas.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Pieredzes apmaiņa</h3>
+                    <p>Droša profesionālā kopiena labās prakses apmaiņai starp dažādu Latvijas novadu izglītības iestādēm.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Interešu pārstāvniecība</h3>
+                    <p>Aktīva līdzdalība izglītības politikas veidošanā un normatīvo aktu pilnveides procesos.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <section class="aktualitates-section">
         <div class="aktualitates-container">
             <h2>Aktualitātes</h2>
             <div class="news-grid">
                 <div class="news-card">
-                    <h3>Latvijas izglītības...</h3>
-                    <p>Latvijas izglītības vadītāju asociācija sāk jaunu posmu...</p>
-                    <a href="#">Lasīt vairāk &rarr;</a>
+                    <div>
+                        <h3>Izglītības vadītāju forums 2026</h3>
+                        <p>Aicinām asociācijas biedrus reģistrēties ikgadējam izglītības līderības forumam par skolu autonomiju un attīstību.</p>
+                    </div>
+                    <a href="par-mums.html">Lasīt vairāk &rarr;</a>
                 </div>
                 <div class="news-card">
-                    <h3>Aktuālās izmaiņas</h3>
-                    <p>Izmaiņas normatīvajos aktos un vadlīnijās direktoriem.</p>
-                    <a href="#">Lasīt vairāk &rarr;</a>
+                    <div>
+                        <h3>Priekšlikumi normatīvo aktu pilnveidei</h3>
+                        <p>LIVA valde ir iesniegusi priekšlikumus Izglītības un zinātnes ministrijai par pedagogu darba samaksas modeli.</p>
+                    </div>
+                    <a href="likumi.html">Lasīt vairāk &rarr;</a>
                 </div>
                 <div class="news-card">
-                    <h3>Seminārs un pieredze</h3>
-                    <p>Pieredzes apmaiņas brauciens un tikšanās ar nozares līderiem.</p>
-                    <a href="#">Lasīt vairāk &rarr;</a>
+                    <div>
+                        <h3>Pieredzes apmaiņas semināri reģionos</h3>
+                        <p>Uzsākam reģionālo tikšanos ciklu izglītības iestāžu vadītājiem labās prakses pārņemšanai.</p>
+                    </div>
+                    <a href="biedri.html">Lasīt vairāk &rarr;</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div>
-                <p><strong>Kontaktdātas:</strong> info@liva.lv | +371 20000000</p>
+            <div class="footer-col">
+                <h4>Latvijas Izglītības vadītāju asociācija</h4>
+                <p>Stipri vadītāji. Stipras skolas. Stipra Latvija.</p>
             </div>
-            <div>
-                <p>Adrese: Aspazijas bulvāris 32, Rīga</p>
+            <div class="footer-col">
+                <h4>Kontaktinformācija</h4>
+                <p>E-pasts: info@liva.lv<br>Tālrunis: +371 20000000</p>
+            </div>
+            <div class="footer-col">
+                <h4>Adrese</h4>
+                <p>Aspazijas bulvāris 32, Rīga, LV-1050</p>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 Latvijas izglītības vadītāju asociācija.
+            &copy; 2026 Latvijas Izglītības vadītāju asociācija (LIVA). Visas tiesības aizsargātas.
         </div>
     </footer>
 
