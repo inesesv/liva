@@ -100,26 +100,39 @@
     <!-- Galvenais satura konteiners -->
     <main class="flex-grow">
 
-        <!-- 1. SĀKUMS -->
+<!-- 1. SĀKUMS -->
         <section id="section-sakums" class="content-section">
             <!-- Refined Hero Sadaļa ar kreiso attēlu un gradientu uz pelēko fonu labajā pusē -->
             <div class="bg-gray-100 py-12 lg:py-20 overflow-hidden">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                         <!-- Kreisā puse: Attēls ar gradienta pāreju -->
-                        <div class="lg:col-span-7 h-[250px] sm:h-[250px] lg:h-[300px] rounded-2xl shadow-xl hero-image-container"></div>
+                        <div class="lg:col-span-7 h-[350px] sm:h-[450px] lg:h-[500px] rounded-2xl shadow-xl hero-image-container"></div>
                         
                         <!-- Labā puse: Teksts un CTA pogas (mīkstā pelēkā / gaišā vidē) -->
                         <div class="lg:col-span-5 space-y-6 text-left">
+Nomainiet to uz šo sašaurināto variantu:
+HTML
+        <!-- 1. SĀKUMS -->
+        <section id="section-sakums" class="content-section">
+            <!-- Refined Hero Sadaļa ar kreiso attēlu un gradientu uz pelēko fonu labajā pusē -->
+            <div class="bg-gray-100 py-6 lg:py-10 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                        <!-- Kreisā puse: Attēls ar gradienta pāreju (sašaurināts augstums) -->
+                        <div class="lg:col-span-7 h-[260px] sm:h-[320px] lg:h-[360px] rounded-2xl shadow-xl hero-image-container"></div>
+                        
+                        <!-- Labā puse: Teksts un CTA pogas -->
+                        <div class="lg:col-span-5 space-y-4 text-left">
                             <span class="bg-livaBlue text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Līderība izglītībā</span>
-                            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-livaDarkBlue leading-tight">
+                            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-livaDarkBlue leading-tight">
                                 LĪDERĪBA UN INOVĀCIJAS LATVIJAS IZGLĪTĪBĀ
                             </h1>
-                            <p class="text-gray-600 text-base lg:text-lg">
+                            <p class="text-gray-600 text-sm lg:text-base">
                                 Latvijas Izglītības vadītāju asociācija vieno un atbalsta Latvijas izglītības iestāžu vadītājus, veicinot profesionālo izaugsmi, pieredzes apmaiņu un saliedētību.
                             </p>
-                            <div class="pt-2">
-                                <button onclick="switchSection('biedri')" class="bg-livaGreen hover:bg-livaGreenHover text-livaDarkBlue font-bold px-8 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                            <div class="pt-1">
+                                <button onclick="switchSection('par-mums')" class="bg-livaGreen hover:bg-livaGreenHover text-livaDarkBlue font-bold px-6 py-3 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 text-sm">
                                     PIEVIENOTIES
                                 </button>
                             </div>
